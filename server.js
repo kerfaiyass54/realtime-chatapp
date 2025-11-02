@@ -31,7 +31,7 @@ const cors = require('cors');
         server.use(bodyParser.json());
         server.use(bodyParser.urlencoded({ extended: true }));
         
-        server.get('*', (req, res) => {
+        server.get(/(.*)/, (req, res) => {
           return handler(req, res);
         });
         
