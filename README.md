@@ -1,7 +1,7 @@
-# realtime-chatapp
+# Realtime chatting application
 
 ## 🚀 Overview
-Welcome to `realtime-chatapp`, a real-time chat application built with JavaScript, React, and Next.js. This project leverages Pusher for real-time messaging and Sentiment analysis to provide a dynamic and engaging user experience. Whether you're a developer looking to build a chat application or a user seeking a seamless communication tool, `realtime-chatapp` is designed to meet your needs.
+Welcome to this project, a real-time chat application built with JavaScript, React, and Next.js. This project leverages Pusher for real-time messaging and Sentiment analysis to provide a dynamic and engaging user experience. Whether you're a developer looking to build a chat application or a user seeking a seamless communication tool, it is designed to meet your needs.
 
 ### Key Features
 - **Real-time Messaging**: Instant communication with Pusher.
@@ -69,87 +69,7 @@ npm run dev
 - **Docker**: (Coming soon)
 - **Development Setup**: Follow the steps above.
 
-## 🎯 Usage
 
-### Basic Usage
-```javascript
-// Import the necessary modules
-import React from 'react';
-import { useEffect, useState } from 'react';
-import Pusher from 'pusher-js';
-import Sentiment from 'sentiment';
-
-// Initialize Pusher
-const pusher = new Pusher('your_pusher_app_key', {
-  cluster: 'your_pusher_app_cluster',
-  encrypted: true
-});
-
-// Initialize Sentiment
-const sentiment = new Sentiment();
-
-// Create a chat component
-const Chat = () => {
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    // Subscribe to Pusher channel
-    const channel = pusher.subscribe('chat');
-    channel.bind('new_message', (data) => {
-      const message = {
-        text: data.message,
-        sentiment: sentiment.analyze(data.message).score
-      };
-      setMessages([...messages, message]);
-    });
-
-    return () => {
-      channel.unbind('new_message');
-      channel.unsubscribe();
-    };
-  }, [messages]);
-
-  return (
-    <div>
-      <ul>
-        {messages.map((message, index) => (
-          <li key={index}>
-            {message.text} - Sentiment: {message.sentiment}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default Chat;
-```
-
-### Advanced Usage
-- **Configuration Options**: Customize the `.env` file with your Pusher credentials.
-- **API Documentation**: Refer to the Pusher and Sentiment documentation for more details.
-
-## 📁 Project Structure
-```
-realtime-chatapp/
-├── .gitignore
-├── .env
-├── .next/
-├── .vscode/
-├── node_modules/
-├── package.json
-├── next.config.js
-├── public/
-├── server.js
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   └── utils/
-├── .eslintrc.json
-├── .prettierrc
-└── README.md
-```
 
 ## 🔧 Configuration
 - **Environment Variables**: Create a `.env` file with your Pusher credentials.
@@ -174,26 +94,7 @@ We welcome contributions! Here's how you can get started:
 4. Push to the branch: `git push origin feature/your-feature`.
 5. Open a pull request.
 
-## 📝 License
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors & Contributors
-- [Your Name](https://github.com/yourusername) - Initial work
-- [Contributor Name](https://github.com/contributorusername) - Contributions
-
-## 🐛 Issues & Support
-- Report issues: [Open an issue](https://github.com/yourusername/realtime-chatapp/issues/new)
-- Get help: [Join the discussion](https://github.com/yourusername/realtime-chatapp/discussions)
-
-## 🗺️ Roadmap
-- **Planned Features**:
-  - Docker setup
-  - Enhanced UI/UX
-  - Additional sentiment analysis features
-- **Known Issues**: None
-- **Future Improvements**: Continuous updates and enhancements
-
----
 
 **Additional Guidelines:**
 - Use modern markdown features (badges, collapsible sections, etc.)
